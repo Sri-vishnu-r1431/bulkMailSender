@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <div class="text-center display-4 mb-5">
+            Single Student Edit
+        </div>
+        <div class="col-6 offset-3">
+            <form action="/viewStudents/<%=student._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Enter userEmail</label>
+                    <input type="text" id="userEmail" name=User[userEmail] class="form-control"
+                        value=<%=student.userEmail %>>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Enter Name</label>
+                    <input type="text" id="name" name=User[name] class="form-control" value=<%=student.name %>>
+                </div>
+                <div class="mb-3">
+                    <label for="community" class="form-label">Enter community</label>
+                    <input type="text" id="community" name=User[community] class="form-control"
+                        value=<%=student.community %>>
+                </div>
+                <div class="mb-3">
+                    <label for="tenth" class="form-label">Enter Tenth Mark(in Percentage):</label>
+                    <input type="text" id="tenth" name=User[tenth] class="form-control" value=<%=student.tenth %>>
+                </div>
+                <div class="mb-3">
+                    <label for="twelfth" class="form-label">Enter Twelfth Mark(in Percentage):</label>
+                    <input type="text" id="twelfth" name=User[twelfth] class="form-control" value=<%=student.twelfth %>>
+                </div>
+                <div class="mb-3">
+                    <label for="standingArrears" class="form-label">Enter Number of Standing Arrears:</label>
+                    <input type="text" id="standingArrears" name=User[standingArrears] class="form-control"
+                        value=<%=student.standingArrears %>>
+                </div>
+                <div class="mb-3">
+                    <label for="Hosteler" class="form-label">Hosteler or not(Yes or No)?</label>
+                    <select name="User[Hosteler]" id="Hosteler">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="feePending" class="form-label">If feePending enter Amount</label>
+                    <input type="text" id="feePending" name=User[feePending] class="form-control"
+                        value=<%=student.feePending %>>
+                </div>
+                <button type="submit" class="btn btn-success">Submit </button>
+            </form>
+        </div>
+    </div>
