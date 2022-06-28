@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate')%>
+    <form action="/upload/multi" enctype="multipart/form-data" method="post" onsubmit="return ifFile()">
+        <div class="d-flex justify-content-center  ">
+            <div class="ml-3 d-flex align-content-center flex-wrap">
+                <label for="formFile" class="form-label">Choose Excel file to Upload</label>
+                <input type="file" name="uploadfile" class="form-control mt-3" id="sheet" type="file" id="formFile"
+                    accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'>
+                <input type="submit" class="btn btn-success mt-5" id="submit" value="Upload Excel">
+            </div>
+
+
+        </div>
+    </form>
+    <script>
+        let fileRead = document.querySelector("#sheet");
+        let submitBtn = document.querySelector("#submit");
+        function ifFile() {
+            let fileName = fileRead.value;
+            let str = "";
+            for (let i = fileName.length - 1; i >= 0; i--) {
+                console.log(fileName[i]);
+                if (fileName[i] !== '.') {
+                    str += fileName[i];
+                }
+                else {
+                    break;
+                }
+            }
+            if (str !== "xslx") {
+                alert("Kindly Upload A Excel File");
+                return false;
+            }
+            if (fileRead.value === "") {
+                alert("Kindly Upload A Excel File");
+                return false;
+            }
+            return true;
+        }
+
+    </script>

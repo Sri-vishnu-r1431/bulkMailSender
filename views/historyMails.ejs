@@ -1,0 +1,41 @@
+<%- layout("layouts/boilerplate") %>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        .para {
+            font-size: 1.75rem;
+            font-family: 'Bebas Neue', cursive;
+
+        }
+
+        .cus {
+            font-weight: 900 !important;
+        }
+
+        .border {
+            border-width: 6px !important;
+        }
+
+        .flexy {
+            display: block !important;
+            word-break: break-all;
+            width: 50%;
+
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 display-5  d-flex justify-content-around mb-3">
+            <p class="border border-dark p-3 cus">Sent To:</p>
+            <p class="border border-dark p-3 cus">Timed at:</p>
+        </div>
+        <% for(let i=0;i<history.length;i++) {%>
+            <div class="col-md-8 border border-dark offset-md-2 bg-warning d-flex justify-content-around mb-3">
+                <p class="text-dark para flexy m-2">
+                    <%=history[i].Details %>
+                </p>
+                <p class="text-dark para m-2">
+                    <%=history[i].time%>
+                </p>
+            </div>
+            <% } %>
+    </div>

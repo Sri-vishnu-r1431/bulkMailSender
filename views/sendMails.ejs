@@ -1,0 +1,181 @@
+<%- layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/lib/summernote/summernote-bs4.min.css">
+    <style>
+        #main {
+            margin: 0 auto !important;
+        }
+
+        .pre-1 {
+            width: 60%;
+        }
+
+        select,
+        input {
+            border-radius: 15px !important;
+            border: 1px solid grey;
+            padding-left: 8px;
+
+        }
+
+        .list {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            word-wrap: break-word;
+        }
+
+        .list p {
+            margin-right: 1rem;
+        }
+    </style>
+    <h4 class="display-6 d-flex justify-content-center mb-4">Select Personnel To Mail</h4>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex mx-5"><label for="Year" class="input-group-text">Select
+                            Year:</label></div>
+                </div>
+                <select name="User[Year]" id="Year">
+                    <option value="all">All</option>
+                    <option value="21">1st Year</option>
+                    <option value="20">2nd Year</option>
+                    <option value="19">3rd Year</option>
+                    <option value="18">4th Year</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex mx-5"><label for="tenth" class="input-group-text">Enter
+                            Tenth percentage:</label></div>
+                </div>
+                <input type="number" name="User[tenth]" id="tenth" min="0" max="100" value="0">
+            </div>
+
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex mx-5"><label for="twelfth" class="input-group-text">Enter
+                            twelfth Pecentage:</label></div>
+                </div>
+                <input type="number" max="100" min="0" id="twelfth" value="0" name="User[twelfth]">
+            </div>
+
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex  mx-5"><label for="community" class="input-group-text">Select
+                            Community:</label></div>
+                </div>
+                <select name="User[community]" id="community">
+                    <option value="All">All</option>
+                    <option value="OBC">OBC</option>
+                    <option value="BC">BC</option>
+                    <option value="MBC">MBC</option>
+                    <option value="OC">OC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex  mx-5"><label for="Hosteler"
+                            class="input-group-text">Hosteler:</label></div>
+                </div>
+                <select name="User[Hosteler]" id="Hosteler">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3 d-flex align-items-center">
+                <div class="pre-1">
+                    <div class="input-group-prepend d-flex mx-5"><label for="feePending" class="input-group-text">Enter
+                            Fee Pending:</label></div>
+                </div>
+                <input type="number" max="100" min="0" id="feePending" value="0" name="User[feePending]">
+            </div>
+
+        </div>
+        <div class=" col-6 d-flex justify-content-center">
+            <div class="btn-success btn" id="query-btn">Submit</div>
+        </div>
+
+    </div>
+    <!--Displaying Contents-->
+    <h4 class="display-6 d-flex justify-content-center mb-4 mt-4">List of mailIds Selected: <span id="numMail"></span>
+    </h4>
+    <div class="list">
+
+    </div>
+
+
+
+    <!--Mail Sending-->
+    <h4 class="display-4 d-flex justify-content-center">Send Mails</h4>
+    <div class="row d-flex justify-content-center mb-5">
+        <div class="col-md-8 offset-md-2 col-12">
+            <div class="to mb-3">
+                <label for="to" class="form-label">To:</label>
+                <input type="text" class="form-control" id="to">
+            </div>
+            <div class="content mb-3">
+                <label for="Sub">Subject:</label>
+                <input type="text" class="form-control" id="Sub">
+            </div>
+        </div>
+        <div class="col-md-8 offset-md-2 col-12">
+            <div class="summernote" id="email_template"></div>
+        </div>
+
+        <div class="col-md-8 offset-md-2 col-12 ">
+            <h4 class="m-4">Attachments</h4>
+            <form action="#" class="dropzone mt-2" id="email_attachments">
+                <div class="fallback">
+                    <input type="file" name="files">
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-6 offset-md-2 col-12 d-flex justify-content-center">
+            <div class="btn-success btn mt-2" id="submit-btn1" onclick="SendMails()">Submit</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        Dropzone.options.emailAttachments = {
+            maxFileSize: 4,
+            parallelUploads: 10,
+            uploadMultiple: true,
+            autoProcessQueue: false,
+            addRemoveLinks: true,
+            init: function () {
+                var submitButton = document.querySelector("#submit-btn1")
+                var myDropzone = this;
+                submitButton.addEventListener("click", function () {
+                    myDropzone.processQueue();
+
+                });
+
+            },
+        };
+    </script>

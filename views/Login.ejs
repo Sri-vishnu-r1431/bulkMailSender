@@ -1,0 +1,46 @@
+<%- layout("layouts/boilerplate1") %>
+    <style>
+        #main {
+            margin: 0 !important;
+        }
+
+        .container {
+            min-width: 100% !important;
+        }
+
+        @media(max-width:768px) {
+            .offset-3 {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+    <div class="row mt-5">
+        <div class="col-md-6 offset-3">
+            <form action="/auth/login" method="post" novalidate>
+                <div class="display-6 mb-4">Login</div>
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="userName">Email address</label>
+                    <input type="email" id="userName" class="form-control" name="User[email]" />
+
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control" name="User[password]" />
+
+                </div>
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>Not a member? <a href="../auth/Register">Register</a></p>
+
+                </div>
+            </form>
+        </div>
+    </div>

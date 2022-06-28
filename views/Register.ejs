@@ -1,0 +1,80 @@
+<%- layout("layouts/boilerplate1") %>
+    <style>
+        #main {
+            margin: 0 !important;
+        }
+
+        .container {
+            min-width: 100% !important;
+        }
+
+        @media(max-width:768px) {
+            .offset-3 {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+    <div class="row-md-12 mt-5">
+        <div class="col-md-6 offset-3">
+            <form action="/auth/register" method="POST" novalidate>
+                <div class="display-6 mb-4">Register</div>
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example1">Email address:</label>
+                    <input type="email" id="form2Example1" class="form-control" name="User[email]" required />
+                    <div class="valid-feedback">
+                        Looks nice!
+                    </div>
+
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="name">Name:</label>
+                    <input type="text" id="name" class="form-control" name="User[userName]" required />
+                    <div class="valid-feedback">
+                        Looks nice!
+                    </div>
+
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="Password">Password:</label>
+                    <input type="password" id="Password" class="form-control" name="User[password]" required />
+                    <div class="valid-feedback">
+                        Looks nice!
+                    </div>
+
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="confirmPassword">Confirm
+                        Password:</label>
+                    <input type="password" id="confirmPassword" class="form-control" required />
+                    <div class="valid-feedback">
+                        Looks nice!
+                    </div>
+
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="confirmPassword">Gmail Alternative Key:</label>
+                    <input type="password" id="confirmPassword" class="form-control" name="User[gmailPass]" required />
+                    <div class="valid-feedback">
+                        Looks nice!
+                    </div>
+
+                </div>
+
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>Already a Member <a href="../auth/Login">Login</a></p>
+
+                </div>
+            </form>
+        </div>
+    </div>
